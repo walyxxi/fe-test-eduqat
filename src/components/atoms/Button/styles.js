@@ -17,6 +17,12 @@ export const buttonbase = css`
   &:hover {
     filter: brightness(96%);
   }
+
+  &:disabled {
+    filter: grayscale(80%);
+    cursor: not-allowed;
+    background-color: ${({ theme }) => theme.colors.gray_200} !important;
+  }
 `;
 
 /* theme variants */

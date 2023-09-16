@@ -1,4 +1,4 @@
-import { reorderArray } from "../../../utils";
+import { reorderArray } from "../../../../utils";
 import {
   IconClock,
   IconDot,
@@ -7,8 +7,8 @@ import {
   IconSixDot,
   IconTreeDotH,
   IconVideo,
-} from "../../assets/Icons";
-import { Button, Flex, StyledIcon, Text } from "../../components";
+} from "../../../assets/Icons";
+import { Button, Flex, StyledIcon, Text } from "../../../components";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const lessonIcon = {
@@ -16,7 +16,7 @@ const lessonIcon = {
   location: <IconLocation />,
 };
 
-const Lessons = ({ data, onDragEndLesson }) => {
+const Lessons = ({ data, handleChangeLesson }) => {
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -28,7 +28,7 @@ const Lessons = ({ data, onDragEndLesson }) => {
       result.destination.index
     );
 
-    onDragEndLesson(items);
+    handleChangeLesson(items);
   };
 
   return (

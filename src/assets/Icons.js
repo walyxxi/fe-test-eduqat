@@ -10,6 +10,8 @@ import { ReactComponent as IconPencil } from "./icons/pencil.svg";
 import { ReactComponent as IconTreeDot } from "./icons/treedot.svg";
 import { ReactComponent as IconTreeDotH } from "./icons/treedoth.svg";
 import { ReactComponent as IconDot } from "./icons/dot.svg";
+import { ReactComponent as IconTrash } from "./icons/trash.svg";
+import { ReactComponent as IconCheck } from "./icons/check.svg";
 
 export {
   IconEye,
@@ -24,4 +26,6 @@ export {
   IconTreeDot,
   IconTreeDotH,
   IconDot,
+  IconCheck,
+  IconTrash,
 };

@@ -1,16 +1,11 @@
 import { useCallback, useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import {
-  IconEye,
-  IconPencil,
-  IconPlus,
-  IconSixDot,
-  IconTreeDot,
-} from "../../assets/Icons";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { reorderArray } from "../../../utils";
+import { IconEye, IconPlus } from "../../assets/Icons";
 import { Button, Card, Flex, StyledIcon, Text } from "../../components";
 import Layout from "../../layout";
-import Lessons from "./Lessons";
-import { reorderArray } from "../../../utils";
+import Sessions from "./Sessions";
+import AddSession from "./Sessions/Add";
 
 const SESSIONs = [
   {
@@ -31,6 +26,9 @@ const SESSIONs = [
 
 const Event = () => {
   const [data, setData] = useState(SESSIONs);
+  const [isAddSession, setIsAddSession] = useState(false);
+
+  const toogleAddSession = () => setIsAddSession(!isAddSession);
 
   const onDragEnd = useCallback(
     (result) => {
@@ -50,7 +48,7 @@ const Event = () => {
     [data]
   );
 
-  const onDragEndLesson = useCallback(
+  const handleChangeLesson = useCallback(
     (idx, session, lessons) => {
       const _data = [...data];
       _data.splice(idx, 1, { ...session, lessons });
@@ -58,6 +56,22 @@ const Event = () => {
     },
     [data]
   );
+
+  const handleChangeSession = useCallback(
+    (idx, session) => {
+      const _data = [...data];
+      _data.splice(idx, 1, session);
+      setData(_data);
+    },
+    [data]
+  );
+
+  const handleAddSession = (session) => {
+    toogleAddSession();
+    const _data = [...data];
+    _data.push(session);
+    setData(_data);
+  };
 
   return (
     <Layout title="Event">
@@ -108,52 +122,17 @@ const Event = () => {
               direction="column"
             >
               {data.map((session, idx) => (
-                <Draggable
+                <Sessions
                   key={session.id}
-                  draggableId={session.id}
-                  index={idx}
-                >
-                  {(provided, snapshot) => (
-                    <Card
-                      p="16px"
-                      mb="18px"
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      bgColor={snapshot.isDragging ? "gray_50" : "none"}
-                    >
-                      <Flex
-                        justify="space-between"
-                        alignItems="center"
-                        mb="16px"
-                      >
-                        <Flex gap="8px" alignItems="center">
-                          <Button size="small" {...provided.dragHandleProps}>
-                            <StyledIcon color="gray_300">
-                              <IconSixDot />
-                            </StyledIcon>
-                          </Button>
-                          <Text size="xl">{session.name}</Text>
-                          <Button size="small">
-                            <StyledIcon color="gray_300" size="small">
-                              <IconPencil />
-                            </StyledIcon>
-                          </Button>
-                        </Flex>
-                        <Button size="small">
-                          <StyledIcon color="black" size="large">
-                            <IconTreeDot />
-                          </StyledIcon>
-                        </Button>
-                      </Flex>
-                      <Lessons
-                        data={session.lessons}
-                        onDragEndLesson={(lessons) =>
-                          onDragEndLesson(idx, session, lessons)
-                        }
-                      />
-                    </Card>
-                  )}
-                </Draggable>
+                  idx={idx}
+                  data={session}
+                  handleChangeLesson={(lessons) =>
+                    handleChangeLesson(idx, session, lessons)
+                  }
+                  handleChangeSession={(session) =>
+                    handleChangeSession(idx, session)
+                  }
+                />
               ))}
               {provided.placeholder}
             </Flex>
@@ -161,14 +140,23 @@ const Event = () => {
         </Droppable>
       </DragDropContext>
 
-      <Flex justify="flex-end">
-        <Button size="large" variant="contained" color="primary">
-          <StyledIcon size="sm" color="white">
-            <IconPlus />
-          </StyledIcon>
-          <Text ml="2px">Add Session</Text>
-        </Button>
-      </Flex>
+      {isAddSession ? (
+        <AddSession handleAddSession={handleAddSession} />
+      ) : (
+        <Flex justify="flex-end">
+          <Button
+            size="large"
+            variant="contained"
+            color="primary"
+            onClick={toogleAddSession}
+          >
+            <StyledIcon size="sm" color="white">
+              <IconPlus />
+            </StyledIcon>
+            <Text ml="2px">Add Session</Text>
+          </Button>
+        </Flex>
+      )}
     </Layout>
   );
 };
