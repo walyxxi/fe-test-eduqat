@@ -4,6 +4,7 @@ import { Container } from "../components";
 
 const Content = styled.div`
   padding-top: ${({ theme }) => theme.header.height + 30}px;
+  padding-bottom: 20px;
 `;
 
 const Layout = ({ children, title }) => {
