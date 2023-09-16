@@ -23,6 +23,10 @@ export const buttonbase = css`
 export const contained = css`
   font-weight: normal;
   color: ${({ theme }) => theme.colors.white};
+
+  &:hover {
+    filter: brightness(80%);
+  }
 `;
 export const outlined = css`
   font-weight: normal;
@@ -30,6 +34,7 @@ export const outlined = css`
     ${({ theme, color }) => theme.colors[color] || theme.colors.black};
   color: ${({ theme, color }) => theme.colors[color] || theme.colors.black};
   background-color: ${({ theme }) => theme.colors.white};
+
   &:hover {
     filter: brightness(120%);
   }

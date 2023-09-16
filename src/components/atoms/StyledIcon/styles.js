@@ -2,6 +2,10 @@ import { css } from "styled-components";
 
 /* styles common to all icons */
 export const iconbase = css`
+  background-color: ${({ theme, bgColor }) =>
+    theme.colors[bgColor] || "transparent"};
+  padding: ${({ p }) => p || "0"};
+  border-radius: 8px;
   svg {
     vertical-align: middle;
     color: ${({ theme, color }) => theme.colors[color]};
