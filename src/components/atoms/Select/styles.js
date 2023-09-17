@@ -1,24 +1,13 @@
 import { css } from "styled-components";
 
 /* styles common to all buttons */
-export const inputbase = css`
+export const selectbase = css`
+  min-width: 180px;
   border-width: 0 0 2px 0;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.primary};
   outline: none;
   font-size: ${({ theme }) => theme.fontSize.DEFAULT};
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.gray_300};
-    opacity: 1;
-  }
-
-  &:-ms-input-placeholder {
-    color: ${({ theme }) => theme.colors.gray_300};
-  }
-
-  &::-ms-input-placeholder {
-    color: ${({ theme }) => theme.colors.gray_300};
-  }
 `;
 
 /* size variants */

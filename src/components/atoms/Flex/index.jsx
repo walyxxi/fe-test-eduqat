@@ -5,6 +5,7 @@ const Flex = styled.div`
   flex-direction: ${({ direction }) => direction || "row"};
   justify-content: ${({ justify }) => justify || "flex-start"};
   align-items: ${({ alignItems }) => alignItems || "flex-start"};
+  flex-wrap: ${({ wrap }) => wrap || "nowrap"};
   gap: ${({ gap }) => gap};
   width: ${({ w }) => w};
   margin: ${({ m }) => m};

@@ -4,28 +4,47 @@ import { reorderArray } from "../../../utils";
 import { IconEye, IconPlus } from "../../assets/Icons";
 import { Button, Card, Flex, StyledIcon, Text } from "../../components";
 import Layout from "../../layout";
-import Sessions from "./Sessions";
-import AddSession from "./Sessions/Add";
+import Session from "./Session";
+import AddSession from "./Session/Add";
 
-const SESSIONs = [
+const DUMMY_SESSION = [
   {
     id: "item-1",
     name: "Session 1",
     lessons: [
-      { id: "1", title: "Video", type: "video", date: "" },
-      { id: "2", title: "Location", type: "location", date: "" },
-      { id: "3", title: "Location 3", type: "location", date: "" },
+      {
+        id: "1",
+        title: "Lesson 1",
+        type: "video",
+        date: "2023-09-20T16:48",
+        duration: 30,
+      },
+      {
+        id: "2",
+        title: "Lesson 2",
+        type: "location",
+        date: "2023-09-22T12:48",
+        duration: 40,
+      },
     ],
   },
   {
     id: "item-2",
     name: "Session 2",
-    lessons: [{ id: "1", title: "Video", type: "video", date: "" }],
+    lessons: [
+      {
+        id: "1",
+        title: "Lesson 1",
+        type: "video",
+        date: "2023-09-20T16:48",
+        duration: 30,
+      },
+    ],
   },
 ];
 
 const Event = () => {
-  const [data, setData] = useState(SESSIONs);
+  const [data, setData] = useState(DUMMY_SESSION);
   const [isAddSession, setIsAddSession] = useState(false);
 
   const toogleAddSession = () => setIsAddSession(!isAddSession);
@@ -122,7 +141,7 @@ const Event = () => {
               direction="column"
             >
               {data.map((session, idx) => (
-                <Sessions
+                <Session
                   key={session.id}
                   idx={idx}
                   data={session}
@@ -141,7 +160,10 @@ const Event = () => {
       </DragDropContext>
 
       {isAddSession ? (
-        <AddSession handleAddSession={handleAddSession} />
+        <AddSession
+          handleAddSession={handleAddSession}
+          onClose={toogleAddSession}
+        />
       ) : (
         <Flex justify="flex-end">
           <Button

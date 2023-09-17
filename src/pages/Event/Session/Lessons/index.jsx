@@ -1,15 +1,18 @@
-import { reorderArray } from "../../../../utils";
+import { useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { reorderArray } from "../../../../../utils";
 import {
   IconClock,
   IconDot,
   IconLocation,
   IconPlus,
   IconSixDot,
-  IconTreeDotH,
+  IconTrash,
   IconVideo,
-} from "../../../assets/Icons";
-import { Button, Flex, StyledIcon, Text } from "../../../components";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+} from "../../../../assets/Icons";
+import { Button, Flex, StyledIcon, Text } from "../../../../components";
+import AddLesson from "./Add";
+import dayjs from "dayjs";
 
 const lessonIcon = {
   video: <IconVideo />,
@@ -17,6 +20,10 @@ const lessonIcon = {
 };
 
 const Lessons = ({ data, handleChangeLesson }) => {
+  const [isAddLesson, setIsAddLesson] = useState(false);
+
+  const toogleAddLesson = () => setIsAddLesson(!isAddLesson);
+
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -28,6 +35,12 @@ const Lessons = ({ data, handleChangeLesson }) => {
       result.destination.index
     );
 
+    handleChangeLesson(items);
+  };
+
+  const onAddLesson = (newLesson) => {
+    const items = [...data];
+    items.push(newLesson);
     handleChangeLesson(items);
   };
 
@@ -79,17 +92,19 @@ const Lessons = ({ data, handleChangeLesson }) => {
                         <StyledIcon>
                           <IconClock />
                         </StyledIcon>
-                        <Text>24 Oktober 2021, 16:30</Text>
+                        <Text>
+                          {dayjs(lesson.date).format("DD MMMM YYYY, hh:mm")}
+                        </Text>
                         <StyledIcon color="gray_300" size="small">
                           <IconDot />
                         </StyledIcon>
                         <StyledIcon>
                           <IconClock />
                         </StyledIcon>
-                        <Text mr="10px">60 Minute</Text>
+                        <Text mr="10px">{lesson.duration} Minute</Text>
                         <Button size="small">
-                          <StyledIcon size="large">
-                            <IconTreeDotH />
+                          <StyledIcon color="red">
+                            <IconTrash />
                           </StyledIcon>
                         </Button>
                       </Flex>
@@ -103,14 +118,23 @@ const Lessons = ({ data, handleChangeLesson }) => {
         </Droppable>
       </DragDropContext>
 
-      <Flex alignItems="center" gap="10px" p="4px 0" ml="8px">
-        <Button size="small" variant="contained" color="primary">
-          <StyledIcon size="small">
-            <IconPlus />
-          </StyledIcon>
-        </Button>
-        <Text>Add Lesson Material</Text>
-      </Flex>
+      {isAddLesson ? (
+        <AddLesson onClose={toogleAddLesson} onAddLesson={onAddLesson} />
+      ) : (
+        <Flex alignItems="center" gap="10px" p="4px 0" ml="8px">
+          <Button
+            size="small"
+            variant="contained"
+            color="primary"
+            onClick={toogleAddLesson}
+          >
+            <StyledIcon size="small">
+              <IconPlus />
+            </StyledIcon>
+          </Button>
+          <Text>Add Lesson Material</Text>
+        </Flex>
+      )}
     </Flex>
   );
 };

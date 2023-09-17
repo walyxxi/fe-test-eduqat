@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import {
+  IconCheck,
+  IconPencil,
+  IconSixDot,
+  IconTrash,
+} from "../../../assets/Icons";
+import {
   Button,
   Card,
   Flex,
@@ -8,15 +14,9 @@ import {
   StyledIcon,
   Text,
 } from "../../../components";
-import {
-  IconCheck,
-  IconPencil,
-  IconSixDot,
-  IconTreeDot,
-} from "../../../assets/Icons";
 import Lessons from "./Lessons";
 
-const Sessions = ({ idx, data, handleChangeLesson, handleChangeSession }) => {
+const Session = ({ idx, data, handleChangeLesson, handleChangeSession }) => {
   const [isEditName, setIsEditName] = useState(false);
   const [name, setName] = useState(data.name);
 
@@ -72,8 +72,8 @@ const Sessions = ({ idx, data, handleChangeLesson, handleChangeSession }) => {
               )}
             </Flex>
             <Button size="small">
-              <StyledIcon color="black" size="large">
-                <IconTreeDot />
+              <StyledIcon color="red">
+                <IconTrash />
               </StyledIcon>
             </Button>
           </Flex>
@@ -87,4 +87,4 @@ const Sessions = ({ idx, data, handleChangeLesson, handleChangeSession }) => {
   );
 };
 
-export default Sessions;
+export default Session;

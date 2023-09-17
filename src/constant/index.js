@@ -9,4 +9,5 @@ export const LESSON_DEFAULT = {
   title: "",
   type: "",
   date: "",
+  duration: "",
 };

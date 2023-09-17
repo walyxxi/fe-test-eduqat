@@ -1,9 +1,10 @@
 import { Button, Card, Flex, Input, StyledIcon } from "../../../components";
-import { IconCheck } from "../../../assets/Icons";
+import { IconCheck, IconXMark } from "../../../assets/Icons";
 import { useState } from "react";
 import { SESSION_DEFAULT } from "../../../constant";
 import { generateString } from "../../../../utils";
-const AddSession = ({ handleAddSession }) => {
+
+const AddSession = ({ handleAddSession, onClose }) => {
   const [name, setName] = useState("");
 
   const onSave = () => {
@@ -33,6 +34,11 @@ const AddSession = ({ handleAddSession }) => {
         >
           <StyledIcon color="primary">
             <IconCheck />
+          </StyledIcon>
+        </Button>
+        <Button size="small" color="gray_50" onClick={onClose}>
+          <StyledIcon color="red">
+            <IconXMark />
           </StyledIcon>
         </Button>
       </Flex>

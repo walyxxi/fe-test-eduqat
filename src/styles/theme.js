@@ -8,6 +8,7 @@ export const theme = {
     gray_200: "#DFDFDF",
     gray_300: "#BCC0D0",
     gray_400: "#8189A2",
+    red: "#ff5e76",
   },
   fontSize: {
     sm: "12px",
