@@ -37,10 +37,10 @@ const Session = ({ idx, data, handleUpdateLesson, handleUpdateSession }) => {
           mb="18px"
           ref={provided.innerRef}
           {...provided.draggableProps}
-          bgColor={snapshot.isDragging ? "gray_50" : "none"}
+          bgcolor={snapshot.isDragging ? "gray_50" : "none"}
         >
-          <Flex justify="space-between" alignItems="center" mb="16px">
-            <Flex gap="8px" alignItems="center">
+          <Flex justify="space-between" items="center" mb="16px">
+            <Flex gap="8px" items="center">
               <Button size="small" {...provided.dragHandleProps}>
                 <StyledIcon color="gray_300">
                   <IconSixDot />
@@ -53,6 +53,7 @@ const Session = ({ idx, data, handleUpdateLesson, handleUpdateSession }) => {
                     value={name}
                     placeholder="Session Name"
                     onChange={(e) => setName(e.target.value)}
+                    onKeyPress={(e) => e.key === "Enter" && onSaveName()}
                     autoFocus
                     size="large"
                   />

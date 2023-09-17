@@ -8,8 +8,8 @@ const Card = styled.div`
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.12) inset;
   background-color: ${({ theme }) => theme.colors.white};
   margin-bottom: ${({ mb = "0" }) => mb};
-  cursor: ${({ cursor = "default" }) => cursor};
-  background-color: ${({ theme, bgColor }) => theme.colors[bgColor] || "none"};
+  cursor: ${({ cursor }) => cursor};
+  background-color: ${({ theme, bgcolor }) => theme.colors[bgcolor]};
 `;
 
 export default Card;

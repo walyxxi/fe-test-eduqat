@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { reorderArray } from "../../../../../utils";
+import { reorderArray } from "../../../../utils";
 import {
   IconClock,
   IconDot,
@@ -69,32 +69,32 @@ const Lessons = ({ data, handleUpdateLesson }) => {
                       p="6px"
                       mb="10px"
                       justify="space-between"
-                      alignItems="center"
-                      hoverColor="gray_50"
-                      bgColor={snapshot.isDragging ? "gray_50" : "white"}
+                      items="center"
+                      hovercolor="gray_50"
+                      bgcolor={snapshot.isDragging ? "gray_50" : "white"}
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                     >
-                      <Flex gap="8px" alignItems="center">
+                      <Flex gap="8px" items="center">
                         <Button size="small" {...provided.dragHandleProps}>
                           <StyledIcon color="gray_300">
                             <IconSixDot />
                           </StyledIcon>
                         </Button>
-                        <StyledIcon size="large" bgColor="gray_50" p="4px">
+                        <StyledIcon size="large" bgcolor="gray_50" p="4px">
                           {lessonIcon[lesson.type]}
                         </StyledIcon>
                         <Text
-                          borderWidth="0 1px 0 0"
-                          borderStyle="solid"
-                          borderColor="gray_200"
+                          bdwidth="0 1px 0 0"
+                          bdstyle="solid"
+                          bdcolor="gray_200"
                           p="0 8px 0 0"
                         >
                           {lesson.title}
                         </Text>
                         <Text color="primary">Required</Text>
                       </Flex>
-                      <Flex gap="6px" alignItems="center">
+                      <Flex gap="6px" items="center">
                         <StyledIcon>
                           <IconClock />
                         </StyledIcon>
@@ -130,7 +130,7 @@ const Lessons = ({ data, handleUpdateLesson }) => {
       {isAddLesson ? (
         <AddLesson onClose={toogleAddLesson} onAddLesson={onAddLesson} />
       ) : (
-        <Flex alignItems="center" gap="10px" p="4px 0" ml="8px">
+        <Flex items="center" gap="10px" p="4px 0" ml="8px">
           <Button
             size="small"
             variant="contained"

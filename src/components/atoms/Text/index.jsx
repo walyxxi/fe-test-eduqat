@@ -7,10 +7,9 @@ const Text = styled.span`
   margin-left: ${({ ml }) => ml};
   margin-right: ${({ mr }) => mr};
   padding: ${({ p }) => p || "0"};
-  border-width: ${({ borderWidth }) => borderWidth || "0"};
-  border-style: ${({ borderStyle }) => borderStyle || "none"};
-  border-color: ${({ theme, borderColor }) =>
-    theme.colors[borderColor] || "none"};
+  border-width: ${({ bdwidth }) => bdwidth || "0"};
+  border-style: ${({ bdstyle }) => bdstyle || "none"};
+  border-color: ${({ theme, bdcolor }) => theme.colors[bdcolor] || "none"};
 `;
 
 export default Text;

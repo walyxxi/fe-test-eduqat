@@ -16,7 +16,7 @@ const Header = ({ title }) => {
   return (
     <StyledHeader>
       <Container>
-        <Flex alignItems="center" gap="10px">
+        <Flex items="center" gap="10px">
           <Button size="small">
             <StyledIcon>
               <IconArrowLeft />

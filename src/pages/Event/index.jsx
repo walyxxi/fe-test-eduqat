@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { reorderArray } from "../../../utils";
+import { reorderArray } from "../../utils";
 import { IconEye, IconPlus } from "../../assets/Icons";
 import { Button, Card, Flex, StyledIcon, Text } from "../../components";
 import Layout from "../../layout";
 import Session from "./Session";
 import AddSession from "./Session/Add";
 
-const DUMMY_SESSION = [
+const DUMMY_SESSIONS = [
   {
     id: "item-1",
     name: "Session 1",
@@ -44,7 +44,7 @@ const DUMMY_SESSION = [
 ];
 
 const Event = () => {
-  const [data, setData] = useState(DUMMY_SESSION);
+  const [data, setData] = useState(DUMMY_SESSIONS);
   const [isAddSession, setIsAddSession] = useState(false);
 
   const toogleAddSession = () => setIsAddSession(!isAddSession);
@@ -101,7 +101,7 @@ const Event = () => {
   return (
     <Layout title="Event">
       <Flex justify="space-between" mb="20px">
-        <Flex alignItems="center">
+        <Flex items="center">
           <Text size="2xl">Belajar dan praktek cinematic videography</Text>
           <Text size="sm" ml="30px" color="gray_300">
             Last edited 18 October 2021 | 13:23
@@ -117,17 +117,17 @@ const Event = () => {
 
       <Flex
         w="100%"
-        borderWidth="0 0 1px 0"
-        borderColor="gray_200"
-        borderStyle="solid"
+        bdwidth="0 0 1px 0"
+        bdcolor="gray_200"
+        bdstyle="solid"
         mb="40px"
       >
         <Text
           p="14px 0"
           color="primary"
-          borderWidth="0 0 2px 0"
-          borderStyle="solid"
-          borderColor="primary"
+          bdwidth="0 0 2px 0"
+          bdstyle="solid"
+          bdcolor="primary"
         >
           Curricullum
         </Text>

@@ -2,7 +2,7 @@ import { Button, Card, Flex, Input, StyledIcon } from "../../../components";
 import { IconCheck, IconXMark } from "../../../assets/Icons";
 import { useState } from "react";
 import { SESSION_DEFAULT } from "../../../constant";
-import { generateString } from "../../../../utils";
+import { generateString } from "../../../utils";
 
 const AddSession = ({ handleAddSession, onClose }) => {
   const [name, setName] = useState("");
@@ -23,6 +23,7 @@ const AddSession = ({ handleAddSession, onClose }) => {
           value={name}
           placeholder="Session Name"
           onChange={(e) => setName(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && onSave()}
           size="large"
           autoFocus
         />

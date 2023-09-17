@@ -2,8 +2,8 @@ import { css } from "styled-components";
 
 /* styles common to all icons */
 export const iconbase = css`
-  background-color: ${({ theme, bgColor }) =>
-    theme.colors[bgColor] || "transparent"};
+  background-color: ${({ theme, bgcolor }) =>
+    theme.colors[bgcolor] || "transparent"};
   padding: ${({ p }) => p || "0"};
   border-radius: 8px;
   svg {

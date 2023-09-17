@@ -3,7 +3,7 @@ import { IconCheck, IconXMark } from "../../../../assets/Icons";
 import { Button, Flex, Input, StyledIcon } from "../../../../components";
 import Select from "../../../../components/atoms/Select";
 import { LESSON_DEFAULT } from "../../../../constant";
-import { generateString } from "../../../../../utils";
+import { generateString } from "../../../../utils";
 
 const AddLesson = ({ onAddLesson, onClose }) => {
   const [form, setForm] = useState(LESSON_DEFAULT);
@@ -38,7 +38,7 @@ const AddLesson = ({ onAddLesson, onClose }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Flex alignItems="center" gap="12px" ml="10px" wrap="wrap">
+      <Flex items="center" gap="12px" ml="10px" wrap="wrap">
         <Select name="type" value={type} onChange={handleOnChange}>
           <option>Select Type</option>
           <option value="video">Video</option>
