@@ -19,7 +19,7 @@ const lessonIcon = {
   location: <IconLocation />,
 };
 
-const Lessons = ({ data, handleChangeLesson }) => {
+const Lessons = ({ data, handleUpdateLesson }) => {
   const [isAddLesson, setIsAddLesson] = useState(false);
 
   const toogleAddLesson = () => setIsAddLesson(!isAddLesson);
@@ -35,13 +35,19 @@ const Lessons = ({ data, handleChangeLesson }) => {
       result.destination.index
     );
 
-    handleChangeLesson(items);
+    handleUpdateLesson(items);
   };
 
   const onAddLesson = (newLesson) => {
     const items = [...data];
     items.push(newLesson);
-    handleChangeLesson(items);
+    handleUpdateLesson(items);
+  };
+
+  const onDeleteLesson = (idx) => {
+    const items = [...data];
+    items.splice(idx, 1);
+    handleUpdateLesson(items);
   };
 
   return (
@@ -102,7 +108,10 @@ const Lessons = ({ data, handleChangeLesson }) => {
                           <IconClock />
                         </StyledIcon>
                         <Text mr="10px">{lesson.duration} Minute</Text>
-                        <Button size="small">
+                        <Button
+                          size="small"
+                          onClick={() => onDeleteLesson(idx)}
+                        >
                           <StyledIcon color="red">
                             <IconTrash />
                           </StyledIcon>

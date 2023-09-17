@@ -16,16 +16,18 @@ import {
 } from "../../../components";
 import Lessons from "./Lessons";
 
-const Session = ({ idx, data, handleChangeLesson, handleChangeSession }) => {
+const Session = ({ idx, data, handleUpdateLesson, handleUpdateSession }) => {
   const [isEditName, setIsEditName] = useState(false);
   const [name, setName] = useState(data.name);
 
   const toogleIsEditName = () => setIsEditName(!isEditName);
 
   const onSaveName = () => {
-    handleChangeSession({ ...data, name });
+    handleUpdateSession({ ...data, name });
     toogleIsEditName();
   };
+
+  const onDeleteSession = () => handleUpdateSession(data, "delete");
 
   return (
     <Draggable key={data.id} draggableId={data.id} index={idx}>
@@ -71,7 +73,7 @@ const Session = ({ idx, data, handleChangeLesson, handleChangeSession }) => {
                 </>
               )}
             </Flex>
-            <Button size="small">
+            <Button size="small" onClick={onDeleteSession}>
               <StyledIcon color="red">
                 <IconTrash />
               </StyledIcon>
@@ -79,7 +81,7 @@ const Session = ({ idx, data, handleChangeLesson, handleChangeSession }) => {
           </Flex>
           <Lessons
             data={data.lessons}
-            handleChangeLesson={handleChangeLesson}
+            handleUpdateLesson={handleUpdateLesson}
           />
         </Card>
       )}

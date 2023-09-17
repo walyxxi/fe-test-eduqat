@@ -67,7 +67,7 @@ const Event = () => {
     [data]
   );
 
-  const handleChangeLesson = useCallback(
+  const handleUpdateLesson = useCallback(
     (idx, session, lessons) => {
       const _data = [...data];
       _data.splice(idx, 1, { ...session, lessons });
@@ -76,10 +76,16 @@ const Event = () => {
     [data]
   );
 
-  const handleChangeSession = useCallback(
-    (idx, session) => {
+  const handleUpdateSession = useCallback(
+    (idx, session, action) => {
       const _data = [...data];
-      _data.splice(idx, 1, session);
+
+      if (action === "delete") {
+        _data.splice(idx, 1);
+      } else {
+        _data.splice(idx, 1, session);
+      }
+
       setData(_data);
     },
     [data]
@@ -145,11 +151,11 @@ const Event = () => {
                   key={session.id}
                   idx={idx}
                   data={session}
-                  handleChangeLesson={(lessons) =>
-                    handleChangeLesson(idx, session, lessons)
+                  handleUpdateLesson={(lessons) =>
+                    handleUpdateLesson(idx, session, lessons)
                   }
-                  handleChangeSession={(session) =>
-                    handleChangeSession(idx, session)
+                  handleUpdateSession={(session, action) =>
+                    handleUpdateSession(idx, session, action)
                   }
                 />
               ))}
